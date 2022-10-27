@@ -1,0 +1,53 @@
+<div *ngIf="!submitted" class="quiz-container" id="quiz">
+    <div class="quiz-header">
+        <div class="card p-2 border-0" *ngFor="let item of selectedQuiz" style="background-color: rgb(191, 240, 218); font-family: 'Times New Roman', Times, serif;">
+            <ul>
+                <li>
+                    <label style="font-size: x-large;" for="a" id="a_text">{{item.n}}.&nbsp;&nbsp;{{item.question}}</label>
+                </li>
+
+                <li>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<input (click)="scoregrn($event)" type="radio" name={{item.n}} id="a" class="answer">
+                    <label for="a" id="a_text">&nbsp;&nbsp;{{item.a}}</label>
+                </li>
+
+                <li>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<input (click)="scoregrn($event)" type="radio" name={{item.n}} id="b" class="answer">
+                    <label for="b" id="b_text">&nbsp;&nbsp;{{item.b}}</label>
+                </li>
+
+                <li>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<input (click)="scoregrn($event)" type="radio" name={{item.n}} id="c" class="answer">
+                    <label for="c" id="c_text">&nbsp;&nbsp;{{item.c}}</label>
+                </li>
+
+                <li>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<input (click)="scoregrn($event)" type="radio" name={{item.n}} id="d" class="answer">
+                    <label for="d" id="d_text">&nbsp;&nbsp;{{item.d}}</label>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+    <div style="padding-left: 80%">
+        <button (click)="send()" class="btn-lg btn-success active" role="button">&nbsp;&nbsp;Finish&nbsp;&nbsp;</button>
+        <br>
+        <br>
+    </div>
+</div>
+<div *ngIf="submitted" class="gif">
+    <br>
+    <h3 style="color: rgb(75, 0, 128); font-family: 'Times New Roman', Times, serif; text-align: center;">Thank You!!!!</h3>
+    <h3 style="color: rgb(75, 0, 128); font-family: 'Times New Roman', Times, serif; text-align: center;">Exam: {{dbdata}}</h3>
+    <h3 style="color: rgb(75, 0, 128); font-family: 'Times New Roman', Times, serif; text-align: center;">Score : {{score*100/anscheck.length}}</h3>
+    <div style="text-align: center;" *ngIf="score>50">
+        <img src="../../assets/gif1.gif" alt="">
+    </div>
+
+    <div style="text-align: center;" *ngIf="score<=50">
+        <br>
+        <br>
+        <img src="../../assets/console.gif" alt="">
+    </div>
+</div>

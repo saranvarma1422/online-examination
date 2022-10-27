@@ -1,0 +1,36 @@
+/* body,
+html {
+    height: 100%;
+    margin: 0;
+} */
+
+.bg {
+    /* The image used */
+    background-image: url("../../assets/exam2.jpg");
+    /* Full height */
+    /* Center and scale the image nicely */
+    height: 630px;
+    background-position: center;
+    /* background-repeat: no-repeat;
+    background-size: cover; */
+}
+
+#bt {
+    margin-top: 20%;
+    margin-left: 80%;
+    background-color: rgb(15, 35, 114);
+    padding: 10px 35px 10px 35px;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: x-large;
+}
+
+#bt1 {
+    margin-top: 1%;
+    margin-left: 80%;
+    background-color: rgb(15, 35, 114);
+    padding: 10px 30px 10px 30px;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: x-large;
+}

@@ -1,0 +1,41 @@
+<div class="body">
+    <div class="card">
+        <div class="card-body">
+            <h3 style="color: green; text-align: center; font-family:'Times New Roman'; font-size: xxx-large;">
+                Login  :)
+            </h3>
+            <br>
+            <div [hidden]="submitted">
+                <form [formGroup]="studentloginform" #loginstudent (ngSubmit)="loginStudent(loginStudent)" ngNativeValidate>
+                    <div style="color: blue;">
+                        <div class="form-group">
+                            <label for="name">Email</label>
+                            <input type="text" class="form-control" formControlName="student_email" data-toggle="tooltip" data-placement="right" title="Enter Email" required>
+                            
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Password</label>
+                            <input type="password" class="form-control" formControlName="student_password" data-toggle="tooltip" data-placement="right" title="Enter Email" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+                <!-- <img class="center" src="../../assets/login.png" width="20%" height="30%" alt=""> -->
+
+            </div>
+            <div [hidden]="!submitted" *ngIf="subscribeData!=null" style="text-align: center;">
+                <br>
+                <br>
+                <h4 style="color: green;">Login SuccessFully!</h4>
+                <br>
+                <a routerLink={{exa}}>click here to Exam</a>
+
+            </div>
+            <div *ngIf="subscribeData==null&&submitted==true" style="text-align: center;">
+                <h1 style="color:red; font-family: 'Times New Roman', Times, serif; font-size: x-large; text-align: center;">Please Enter Valid Credentials</h1>
+                <br>
+                <a href="login" (click)="addStudentForm()">Login Again</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<div>
+    <br>
+    <h1 style="color: purple; text-align: center; font-family:'Times New Roman', Times, serif; font-size: xxx-large;">
+        Report
+    </h1>
+
+    <div>
+            <table *ngIf="user.profile!='user'" class="center table table-striped" style="font-family: 'Times New Roman', Times, serif; color: olive; font-size: x-large;">
+                <th style="text-align:center">Name</th>
+                <th style="text-align:center">Email</th>
+                <th style="text-align:center">Mobile Number</th>
+                <th style="text-align:center">Test</th>
+                <th style="text-align:center">Score</th>
+
+                <tr *ngFor="let item of studreport">
+                    <ng-container *ngIf="item.profile!='admin'">
+                    <td class="example-item" style="text-align:center">{{item.student_name}}</td>
+                    <td class="example-item" style="text-align:center">{{item.student_email}}</td>
+                    <td class="example-item" style="text-align:center">{{item.student_mobno}}</td>
+                        <td class="example-item" style="text-align:center">
+                            <table class="center table table-striped" style="font-family: 'Times New Roman', Times, serif; color: olive; font-size: x-large;">
+                                <tr *ngFor="let res of item.student_test">
+                                    <td class="example-item">{{res}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="example-item" style="text-align:center">
+                            <table class="center table table-striped" style="font-family: 'Times New Roman', Times, serif; color: olive; font-size: x-large;">
+                                <tr *ngFor="let res of item.student_result">
+                                    <td class="example-item">{{res}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </ng-container>
+                </tr>
+            
+            </table>
+            <table *ngIf="user.profile=='user'" class="center table table-striped" style="font-family: 'Times New Roman', Times, serif; color: olive; font-size: x-large;">
+                <th style="text-align:center">Test</th>
+                <th style="text-align:center">Score</th>
+                <tr *ngFor="let item of test;let i=index">
+                    <td class="example-item" style="text-align:center">{{item}}</td>
+                    <td class="example-item" style="text-align:center">{{score[i]}}</td>
+                </tr>
+            </table>
+    </div>
+</div>

@@ -1,0 +1,200 @@
+<div *ngIf="user.profile=='admin'">
+    <div *ngIf="viewQues!=-1" class="bg">
+        <div class="row">
+            <ng-container *ngFor="let q of exams[viewQues].questions;let i=index">
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title" style="color: rgb(75, 0, 128); font-family: 'Times New Roman', Times, serif; text-align: center;">Question {{i}} :</h4>
+                            <h2 style="color: rgb(0, 79, 128); font-family: 'Times New Roman', Times, serif;">{{q.question}}</h2>
+                            <ol>
+                                <li>{{q.options[0]}}</li>
+                                <li>{{q.options[1]}}</li>
+                                <li>{{q.options[2]}}</li>
+                                <li>{{q.options[3]}}</li>
+                                <li>Ans: q.options[q.answer]</li>
+                            </ol>
+                            <button (click)="deleteQuestion(q)" class="btn btn-danger">Delete<i class="fa fa-trash" aria-hidden="true"></i></button>    
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <button (click)="moveBack()" class="btn btn-danger">Back<i class="fa fa-arrow-left" aria-hidden="true"></i></button> 
+    </div>
+    <div *ngIf="selected==-1&&quesExamId==-1&&viewQues==-1" class="bg">
+        <div class="row">
+            <div class="col-3">
+            </div>
+            <div class="col-6">
+                <form [formGroup]="addExamForm" #addexam (ngSubmit)="addExam(addexam)" style="margin: 1%;">
+                    <div style="color: blue;">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="form-control" formControlName="exam_name" data-toggle="tooltip" data-placement="right" title="Enter Exam name">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success" style="width:120px;">Add</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div *ngFor="let ex of exams;let i=index" class="col-3" style="padding: 3%;">
+                <div class="card shadow-xxl" style="width: 23rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ex.name}}</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Added By: {{ex.addedBy}}</h6>
+                      <div style="display:flex;margin-top: 25px;">
+                        <button (click)="selected=i" class="btn btn-primary" style="margin-left: 5px;">Edit <i class="fa fa-pencil" aria-hidden="true"></i></button>
+                        <button (click)="quesExamId=i" class="btn btn-primary" style="margin-left: 5px;">Add question <i class="fa fa-pencil" aria-hidden="true"></i></button>
+                      </div>
+                      <div style="display:flex;margin-top: 5px;">
+                        <button (click)="deleteExam(ex)" class="btn btn-danger">Delete <i class="fa fa-trash" aria-hidden="true"></i></button>
+                        <button (click)="viewQues=i" class="btn btn-primary" style="margin-left: 5px;">View Question<i class="fa fa-eye" aria-hidden="true"></i></button>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="selected!=-1&&quesExamId==-1&&viewQues==-1">
+        <div class="row">
+            <div class="col-3">
+            </div>
+            <div class="col-6">
+                <form [formGroup]="editExamForm" #editexam (ngSubmit)="editExam(editexam)" style="margin: 1%;">
+                    <div style="color: blue;">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="form-control" formControlName="exam_name" data-toggle="tooltip" data-placement="right" title="Enter Exam name">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success" style="width:120px;">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="quesExamId!=-1">
+        <div class="row">
+            <div class="col-3">
+            </div>
+            <div class="col-6">
+                <form [formGroup]="questionExamForm" #add_question (ngSubmit)="addQuestion(add_question)">
+                    <div class="form-group">
+                        <label for="name">Question Name</label>
+                        <input type="text" class="form-control" formControlName="question_name" data-toggle="tooltip" data-placement="right" title="Enter Question Name">
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="name">Option 1</label>
+                        <input type="text" class="form-control" formControlName="question_optiona" data-toggle="tooltip" data-placement="right" title="Enter Option 1">
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="name"> Option 2</label>
+                        <input type="text" class="form-control" formControlName="question_optionb" data-toggle="tooltip" data-placement="right" title="Enter Option 2">
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="name"> Option 3</label>
+                        <input type="text" class="form-control" formControlName="question_optionc" data-toggle="tooltip" data-placement="right" title="Enter Option 3">
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="name"> Option 4</label>
+                        <input type="text" class="form-control" formControlName="question_optiond" data-toggle="tooltip" data-placement="right" title="Enter Option 4">
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="name"> Answer (which option 1,2,3 or 4)</label>
+                        <input type="number" class="form-control" formControlName="question_ans" data-toggle="tooltip" data-placement="right" title="Enter option 1,2,3 or 4">
+                    </div>
+            
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    
+</div>
+
+<div *ngIf="user.profile=='user'">
+    <br>
+    <br>
+    <h1 style="color: rgb(75, 0, 128); font-family: 'Times New Roman', Times, serif; text-align: center;">Select Exam</h1>
+    <br>
+    <br>
+    <div class="row">
+       <!--
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title" style="color: rgb(75, 0, 128); font-family: 'Times New Roman', Times, serif; text-align: center;">Java</h4>
+                    <h2 style="color: rgb(0, 79, 128); font-family: 'Times New Roman', Times, serif;">Instructions</h2>
+                    <ol>
+                        <li>Make sure that you have attempted all the questions before submission</li>
+                        <li>There will be 5 mcq type question.</li>
+                        <li>No negative marks</li>
+                        <li>No use of addtiotnal applications.</li>
+                        <li>Check your internet connection before staring the exam.</li>
+                    </ol>
+                    <a routerLink="{{tes}}/0" class="nav-link" class="btn btn-primary active" role="button">&nbsp;&nbsp;Start&nbsp;&nbsp;</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title" style="color: rgb(75, 0, 128); font-family: 'Times New Roman', Times, serif; text-align: center;">Html</h4>
+                    <h2 style="color: rgb(0, 79, 128); font-family: 'Times New Roman', Times, serif;">Instructions</h2>
+                    <ol>
+                        <li>Make sure that you have attempted all the questions before submission</li>
+                        <li>There will be 4 mcq type question.</li>
+                        <li>No negative marks</li>
+                        <li>No use of addtiotnal applications.</li>
+                        <li>Check your internet connection before staring the exam.</li>
+                    </ol>
+                    <a routerLink="{{tes}}/1" class="nav-link" class="btn btn-primary active" role="button">&nbsp;&nbsp;Start&nbsp;&nbsp;</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title" style="color: rgb(75, 0, 128); font-family: 'Times New Roman', Times, serif; text-align: center;">SQL</h4>
+                    <h2 style="color: rgb(0, 79, 128); font-family: 'Times New Roman', Times, serif;">Instructions</h2>
+                    <ol>
+                        <li>Make sure that you have attempted all the questions before submission</li>
+                        <li>There will be 6 mcq type question.</li>
+                        <li>No negative marks</li>
+                        <li>No use of addtiotnal applications.</li>
+                        <li>Check your internet connection before staring the exam.</li>
+                    </ol>
+                    <a routerLink="{{tes}}/2" class="nav-link" class="btn btn-primary active" role="button">&nbsp;&nbsp;Start&nbsp;&nbsp;</a>
+                </div>
+            </div>
+        </div>
+    -->
+        <ng-container *ngFor="let ex of exams">
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title" style="color: rgb(75, 0, 128); font-family: 'Times New Roman', Times, serif; text-align: center;">{{ex.name}}</h4>
+                        <h2 style="color: rgb(0, 79, 128); font-family: 'Times New Roman', Times, serif;">Instructions</h2>
+                        <ol>
+                            <li>Make sure that you have attempted all the questions before submission</li>
+                            <li>There will be 6 mcq type question.</li>
+                            <li>No negative marks</li>
+                            <li>No use of addtiotnal applications.</li>
+                            <li>Check your internet connection before staring the exam.</li>
+                        </ol>
+                        <a routerLink="{{tes}}/{{ex.examId}}" class="nav-link" class="btn btn-primary active" role="button">&nbsp;&nbsp;Start&nbsp;&nbsp;</a>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

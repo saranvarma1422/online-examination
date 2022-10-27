@@ -1,0 +1,130 @@
+<h1 style="color: green; font-family:'Times New Roman', Times, serif; margin-bottom: 50px; margin-left: 40%;">Registration Form</h1>
+
+
+<div class="row" style="color: blue;">
+    <div class="col-7">
+        <img src="../../assets/signup1.jpg" width="80%" height="80%" alt="">
+    </div>
+    <div class="col-5">
+
+        <div [hidden]="submitted" style="width: 400px;">
+            <form [formGroup]="studentsaveform" #savestudent (ngSubmit)="saveStudent(saveStudent)" ngNativeValidate>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" class="form-control" formControlName="student_name" data-toggle="tooltip" data-placement="right" title="Enter Name" required>
+                    <div class="alert alert-danger" *ngIf="(StudentName.touched) && (StudentName.invalid)" style="margin-top: 5px;">
+                        <span *ngIf="StudentName.errors.required">Student Name is Required</span>
+                        <span *ngIf="StudentName.errors.minlength"> 
+                        MinLength Error 
+                    </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Email</label>
+                    <input type="text" class="form-control" formControlName="student_email" data-toggle="tooltip" data-placement="right" title="Enter Email" required>
+                    <div class="alert alert-danger" *ngIf="(StudentEmail.touched) && (StudentEmail.invalid)" style="margin-top: 5px;">
+                        <span *ngIf="StudentEmail.errors.required">Student Email is Required</span>
+                        <span *ngIf="StudentEmail.errors.email"> 
+                        Invalid Email Format 
+                    </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name"> Mobile Number</label>
+                    <input type="text" class="form-control" formControlName="student_mobno" data-toggle="tooltip" data-placement="right" title="Enter Mobile" required>
+                    <div class="alert alert-danger" *ngIf="(StudentMobno.touched) && (StudentMobno.invalid)" style="margin-top: 5px;">
+                        <span *ngIf="StudentMobno.errors.required">Mobile is Required</span>
+                        <span *ngIf="StudentMobno.errors.email"> 
+                      Invalid Email Format 
+                  </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name"> City</label>
+                    <input type="text" class="form-control" formControlName="student_city" data-toggle="tooltip" data-placement="right" title="Enter City" required>
+                    <div class="alert alert-danger" *ngIf="(StudentMobno.touched) && (StudentMobno.invalid)" style="margin-top: 5px;">
+                        <span *ngIf="StudentMobno.errors.required">city is Required</span>
+                        <span *ngIf="StudentMobno.errors.email"> 
+                      Invalid Email Format 
+                  </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name"> Date of Birth</label>
+                    <input type="date" class="form-control" formControlName="student_dob" data-toggle="tooltip" data-placement="right" title="Enter Date of birth" required>
+                    <div class="alert alert-danger" *ngIf="(StudentDob.touched) && (StudentDob.invalid)" style="margin-top: 5px;">
+                        <span *ngIf="StudentDob.errors.required">DOB is Required</span>
+                        <span *ngIf="StudentDob.errors.email"> 
+                      Invalid Email Format 
+                  </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="branch">Qualification</label>
+                    <select class="form-control" formControlName="student_branch" data-toggle="tooltip" data-placement="right" title="Select Student Branch" required>
+                    <option value="null">--Select Branch--</option>
+                  <option value="B-Tech">B-Tech</option>
+                  <option value="BCA">BCA</option>
+                  <option value="MCA">MCA</option>
+                  <option value="M-Tech">M-Tech</option>
+                </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="name"> State</label>
+                    <input type="text" class="form-control" formControlName="student_state" data-toggle="tooltip" data-placement="right" title="Enter State" required>
+                    <div class="alert alert-danger" *ngIf="(StudentState.touched) && (StudentState.invalid)" style="margin-top: 5px;">
+                        <span *ngIf="StudentState.errors.required">state is Required</span>
+                        <span *ngIf="StudentState.errors.email"> 
+                      Invalid Email Format 
+                  </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name"> Year of Completition</label>
+                    <input type="text" class="form-control" formControlName="student_yoc" data-toggle="tooltip" data-placement="right" title="Year of Completition" required>
+                    <div class="alert alert-danger" *ngIf="(StudentYoc.touched) && (StudentYoc.invalid)" style="margin-top: 5px;">
+                        <span *ngIf="StudentYoc.errors.required">YOC is Required</span>
+                        <span *ngIf="StudentYoc.errors.email"> 
+                      Invalid Email Format 
+                  </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name"> Password </label>
+                    <input type="password" class="form-control" formControlName="student_password" data-toggle="tooltip" data-placement="right" title="Enter Password" required>
+                    <div class="alert alert-danger" *ngIf="(StudentPassword.touched) && (StudentPassword.invalid)" style="margin-top: 5px;">
+                        <span *ngIf="StudentPassword.errors.required">Password is Required</span>
+                        <span *ngIf="StudentPassword.errors.email"> 
+                      Invalid Email Format 
+                  </span>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+        <div [hidden]="!submitted">
+            <h4 style="color: green;">Registered SuccessFully!</h4>
+
+        </div>
+    </div>
+
+
+    <!-- </div>
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+        <div [hidden]="!submitted">
+            <h4 style="color: green;">Registered SuccessFully!</h4>
+           
+        </div>
+    </div>
+    <div class="col-4"></div>
+</div> -->
